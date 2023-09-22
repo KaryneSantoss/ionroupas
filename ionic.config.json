@@ -1,0 +1,7 @@
+{
+  "name": "ionroupas",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
