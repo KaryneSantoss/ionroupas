@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
   {
@@ -13,22 +14,32 @@ const routes: Routes = [
   },
   {
     path: 'inicio',
+    //mudar o "titulo no navegador"
+    title: environment.appName + ' - ' + environment.appSlogan,
     loadChildren: () => import('./page/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'contacts',
+    //mudar o "titulo no navegador"
+    title: environment.appName + '- Faça contato',
     loadChildren: () => import('./page/contacts/contacts.module').then( m => m.ContactsPageModule)
   },
   {
     path: 'about',
+    //mudar o "titulo no navegador"
+    title: environment.appName + '- Sobre',
     loadChildren: () => import('./page/about/about.module').then( m => m.AboutPageModule)
   },
   {
     path: 'polices',
+    //mudar o "titulo no navegador"
+    title: environment.appName + '- Políticas de privacidade',
     loadChildren: () => import('./page/polices/polices.module').then( m => m.PolicesPageModule)
   },
   {
     path: 'e404',
+    //mudar o "titulo no navegador"
+    title: environment.appName + '- Erro 404',
     loadChildren: () => import('./page/e404/e404.module').then( m => m.E404PageModule)
   },
   {
