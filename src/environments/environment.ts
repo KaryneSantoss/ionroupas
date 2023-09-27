@@ -1,5 +1,8 @@
   export const environment = {
     production: false,
+    appName: "Ionic Test",
+    appSlogan: "O melhor site do mundo!",
+
     firebase:{
       apiKey: "AIzaSyBA-LF80JE6Lx4GL7pIhfpHd8w-W2MYqgA",
       authDomain: "ionroupas.firebaseapp.com",
