@@ -8,12 +8,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
-import { environment } from 'src/environments/environment';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore'
-
-
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,9 +20,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore'
   // or after 30 seconds (whichever comes first).
   registrationStrategy: 'registerWhenStable:30000'
 }), // ← Tem uma vírgula nova aqui.
-provideFirebaseApp(() => initializeApp(environment.firebase)),
-provideAuth(() => getAuth()),
-provideFirestore(() => getFirestore())
+
 ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

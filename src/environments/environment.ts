@@ -3,6 +3,10 @@
     appName: "Ionic Test",
     appSlogan: "O melhor site do mundo!",
 
+    //Tipo de login (Redirect e pop up)
+    signInMethod: "redirect",
+
+
     firebase:{
       apiKey: "AIzaSyBA-LF80JE6Lx4GL7pIhfpHd8w-W2MYqgA",
       authDomain: "ionroupas.firebaseapp.com",
