@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
+import { authState } from 'rxfire/auth';
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-root',
@@ -15,9 +16,6 @@ export class AppComponent {
 
   //módulo de autentucação
   private auth: Auth = inject(Auth);
-
-  //situação do usuário
-  authState$ = authState(this.auth);
 
   public appPages = [
     { title: 'Inicio', url: 'inicio', icon: 'home' },
