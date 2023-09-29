@@ -37,6 +37,16 @@ const routes: Routes = [
     loadChildren: () => import('./page/polices/polices.module').then( m => m.PolicesPageModule)
   },
   {
+    path: 'login',
+    title: environment.appName + '- Área de login',
+    loadChildren: () => import('./user/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'profile',
+    title: environment.appName + '- Perfil do usuário',
+    loadChildren: () => import('./user/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
     path: 'e404',
     //mudar o "titulo no navegador"
     title: environment.appName + '- Erro 404',
@@ -47,6 +57,7 @@ const routes: Routes = [
     redirectTo: 'e404',
     pathMatch: 'full'
   }
+
 ];
 
 @NgModule({
