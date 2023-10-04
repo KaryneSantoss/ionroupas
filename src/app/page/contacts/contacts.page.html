@@ -1,17 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title class="ion-text-center">contacts</ion-title>
-    <ion-icon name="chatbubble-ellipses" slot="end" class="ion-padding"></ion-icon>
+
+    <ion-buttons slot="start"><ion-menu-button></ion-menu-button></ion-buttons>
+
+    <ion-title class="ion-text-center">Contatos</ion-title>
+
+    <ion-icon ios="mail-outline" md="mail-sharp" slot="end" class="ion-padding"></ion-icon>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">contacts</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding-start ion-padding-end">
+
+  <div *ngIf="!sended"><!--*ngIf="sended" é pra mostrar/esconder a div-->
+
+    <p>Preencha todos os campos abaixo para entrar em contato com a equipe do {{ env.appName }}.</p>
+
+    <p>
+      <ion-input label="Nome" type="text" labelPlacement="floating" fill="outline"
+        placeholder="Digite seu nome completo." errorText="Nome inválido."  required minlength="3" [(ngModel)]="form.name" ></ion-input>
+    </p>
+    <!--Estilo do ionic(label-placement="floating" fill="outline"), obrigatório (required), quantidade de caracteres (minlength)-->
+    <!--() para ação e [] para buscar as variáveis-->
+    <p>
+      <ion-input label="Email" type="text" labelPlacement="floating" fill="outline"
+        placeholder="Digite seu e-mail." errorText="Email inválido."  required email [(ngModel)]="form.email" ></ion-input>
+    </p>
+
+    <p>
+      <ion-input label="Assunto" type="text" labelPlacement="floating" fill="outline"
+        placeholder="Digite o assunto." errorText="Assunto inválido."  required minlength="3" [(ngModel)]="form.subject" ></ion-input>
+    </p>
+
+    <p>
+      <ion-textarea label="Mensagem" name="message" label-placement="floating" fill="outline"
+      placeholder="Digite a mensagem." error-text="Mensagem inválida." required minlength="5"
+      [(ngModel)]="form.message" autoGrow="true"></ion-textarea>
+    </p>
+
+    <p>
+      <ion-button (click)="sendForm()">Enviar</ion-button>
+    </p>
+
+  </div>
+
+  <div *ngIf="sended"><!--*ngIf="sended" é pra mostrar/esconder a div-->
+    <h4>Olá {{ form.name }}</h4>
+    <p>Seu contato foi enviado com sucesso.</p>
+    <p><em>Obrigado...</em></p>
+  </div>
+  
+
 </ion-content>
