@@ -53,10 +53,15 @@ const routes: Routes = [
     loadChildren: () => import('./page/e404/e404.module').then( m => m.E404PageModule)
   },
   {
+    path: 'create',
+    loadChildren: () => import('./db/create/create.module').then( m => m.CreatePageModule)
+  },
+  {
     path: '**',
     redirectTo: 'e404',
     pathMatch: 'full'
   }
+
 
 ];
 

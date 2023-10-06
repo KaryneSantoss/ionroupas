@@ -25,8 +25,6 @@ export class AppComponent {
 
   // Inicializa Authentication.
   auth = getAuth(this.app);
-  
-   
 
   //chama dados das variáveis(Fazer importação)
   env = environment;
