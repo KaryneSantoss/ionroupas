@@ -17,29 +17,29 @@
     <p>Preencha todos os campos abaixo para entrar em contato com a equipe do {{ env.appName }}.</p>
 
     <p>
-      <ion-input label="Nome" type="text" labelPlacement="floating" fill="outline"
-        placeholder="Digite seu nome completo." errorText="Nome inválido."  required minlength="3" [(ngModel)]="form.name" ></ion-input>
+      <ion-input label="Nome" type="text" name="name" labelPlacement="floating" fill="outline"
+        placeholder="Digite seu nome completo." errorText="Nome inválido."  required minlength="3" [(ngModel)]="form.name" (ionInput)="change()"></ion-input>
     </p>
     <!--Estilo do ionic(label-placement="floating" fill="outline"), obrigatório (required), quantidade de caracteres (minlength)-->
     <!--() para ação e [] para buscar as variáveis-->
     <p>
-      <ion-input label="Email" type="text" labelPlacement="floating" fill="outline"
-        placeholder="Digite seu e-mail." errorText="Email inválido."  required email [(ngModel)]="form.email" ></ion-input>
+      <ion-input label="Email" name="email" type="text" labelPlacement="floating" fill="outline"
+        placeholder="Digite seu e-mail." errorText="Email inválido."  required email [(ngModel)]="form.email" (ionInput)="change()"></ion-input>
     </p>
 
     <p>
-      <ion-input label="Assunto" type="text" labelPlacement="floating" fill="outline"
-        placeholder="Digite o assunto." errorText="Assunto inválido."  required minlength="3" [(ngModel)]="form.subject" ></ion-input>
+      <ion-input label="Assunto" name="subject" type="text" labelPlacement="floating" fill="outline"
+        placeholder="Digite o assunto." errorText="Assunto inválido."  required minlength="3" [(ngModel)]="form.subject" (ionInput)="change()"></ion-input>
     </p>
 
     <p>
       <ion-textarea label="Mensagem" name="message" label-placement="floating" fill="outline"
       placeholder="Digite a mensagem." error-text="Mensagem inválida." required minlength="5"
-      [(ngModel)]="form.message" autoGrow="true"></ion-textarea>
+      [(ngModel)]="form.message" autoGrow="true" (ionInput)="change()"></ion-textarea>
     </p>
 
     <p>
-      <ion-button (click)="sendForm()">Enviar</ion-button>
+      <ion-button [disabled]="btnDisabled" (click)="sendForm()">Enviar</ion-button>
     </p>
 
   </div>
