@@ -5,13 +5,30 @@
     </ion-buttons>
     <ion-title class="ion-text-center">Início</ion-title>
     <ion-icon name="home" slot="end" class="ion-padding"></ion-icon>
+    <ion-progress-bar *ngIf="!view" type="indeterminate"></ion-progress-bar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-list *ngIf="docView.length > 0">
 
+    <div  *ngFor="let item of docView" >
+    <ion-item [routerLink]="'/view/' + item.id">
+  
+      <ion-thumbnail slot="start">
+        <img [alt]="item.name" [src]="item.image">
+      </ion-thumbnail>
+      <ion-label>{{ item.name }}</ion-label>
+  
+    </ion-item>
+  </div>
+  </ion-list>
 
-
-
+  <ion-card *ngIf="count == 0">
+    <ion-card-header>
+      <ion-card-title>Oooops!</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>Não encontramos documentos.</ion-card-content>
+  </ion-card>
 
 </ion-content>

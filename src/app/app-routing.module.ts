@@ -47,22 +47,24 @@ const routes: Routes = [
     loadChildren: () => import('./user/profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
-    path: 'e404',
-    //mudar o "titulo no navegador"
-    title: environment.appName + '- Erro 404',
-    loadChildren: () => import('./page/e404/e404.module').then( m => m.E404PageModule)
+    path: 'view/:id',
+    loadChildren: () => import('./page/view/view.module').then( m => m.ViewPageModule)
   },
   {
     path: 'create',
     loadChildren: () => import('./db/create/create.module').then( m => m.CreatePageModule)
   },
   {
+    path: 'e404',
+    //mudar o "titulo no navegador"
+    title: environment.appName + '- Erro 404',
+    loadChildren: () => import('./page/e404/e404.module').then( m => m.E404PageModule)
+  },
+  {
     path: '**',
     redirectTo: 'e404',
     pathMatch: 'full'
   }
-
-
 ];
 
 @NgModule({
