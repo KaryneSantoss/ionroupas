@@ -55,6 +55,10 @@ const routes: Routes = [
     loadChildren: () => import('./db/create/create.module').then( m => m.CreatePageModule)
   },
   {
+    path: 'device',
+    loadChildren: () => import('./teste/device/device.module').then( m => m.DevicePageModule)
+  },
+  {
     path: 'e404',
     //mudar o "titulo no navegador"
     title: environment.appName + '- Erro 404',
@@ -65,6 +69,7 @@ const routes: Routes = [
     redirectTo: 'e404',
     pathMatch: 'full'
   }
+
 ];
 
 @NgModule({
