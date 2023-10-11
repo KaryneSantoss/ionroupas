@@ -42,6 +42,7 @@ export class AppComponent {
   public appPages = [
     { title: 'Inicio', url: 'inicio', icon: 'home' },
     { title: 'Contatos', url: 'contacts', icon: 'chatbubble-ellipses' },
+    { title: 'Novo', url: 'new', icon: 'add-circle' },
     { title: 'Sobre', url: 'about', icon: 'information-circle' },
     { title: 'Privacidade', url: 'polices', icon: 'lock-closed' },
     { title: 'Login', url: 'login', icon: 'log-in' },

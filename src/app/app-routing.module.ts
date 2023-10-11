@@ -59,6 +59,11 @@ const routes: Routes = [
     loadChildren: () => import('./teste/device/device.module').then( m => m.DevicePageModule)
   },
   {
+    path: 'new',
+    title: environment.appName + ' - Novo Documento',
+    loadChildren: () => import('./page/new/new.module').then( m => m.NewPageModule)
+  },
+  {
     path: 'e404',
     //mudar o "titulo no navegador"
     title: environment.appName + '- Erro 404',
@@ -69,6 +74,7 @@ const routes: Routes = [
     redirectTo: 'e404',
     pathMatch: 'full'
   }
+
 
 ];
 
