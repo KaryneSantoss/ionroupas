@@ -1,11 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, getFirestore, updateDoc } from 'firebase/firestore';
-
-// Environment contém as configurações do Firebase e de autenticação.
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -27,6 +25,9 @@ export class ViewPage implements OnInit {
   // Controla a visualização da página.
   view = false;
 
+  // Dependência de 'ActivatedRoute' → Roteamento interno.
+  activatedRoute = inject(ActivatedRoute);
+
   // Obtém id da rota.
   docId = this.activatedRoute.snapshot.paramMap.get('id') as string;
 
@@ -36,15 +37,22 @@ export class ViewPage implements OnInit {
   // View dos documentos → html.
   docView: any;
 
-  // Dependência de 'ActivatedRoute' → Roteamento interno.
- //ler o id
-  constructor(private activatedRoute:ActivatedRoute,private alertController: AlertController ) { }
+  // Caixa de alerta do Ionic.
+  alertController = inject(AlertController);
+
+  // Documento não existe.
+  docExist = false;
+
+  // Roteamento interno.
+  router = inject(Router);
+
+  constructor() { }
 
   async ngOnInit() {
 
     // Se usuário não está logado, mostra login.
     onAuthStateChanged(this.auth, (userData) => {
-      if (!userData) location.href = '/login';
+      if (!userData) this.router.navigate(['/login']);
     });
 
     // Recebe o documento do Firestore.
@@ -55,11 +63,30 @@ export class ViewPage implements OnInit {
 
       // Manda para a view.
       this.docView = docSnap.data();
+
+      // Id do documento.
+      this.docView['id'] = this.docId;
+
+      // Atualiza status do documento.
+      this.docView['status'] = 'success';
+
+      // Atualiza contador de views.
+      await updateDoc(this.docRef, { views: parseInt(this.docView.views + 1) });
+
+      // Documento existe.
+      this.docExist = true;
+
+    } else {
+
+      // Exibe erro na view.
+      this.docView['status'] = 'error';
     }
 
     // Exibe a view.
     this.view = true;
+
   }
+
   async delete(id: string) {
     const alert = await this.alertController.create({
       header: 'Oooops!',
@@ -74,7 +101,7 @@ export class ViewPage implements OnInit {
           role: 'confirm',
           handler: async () => {
             await updateDoc(this.docRef, { status: 'off' });
-            location.href = '/';
+            this.router.navigate(['/']);
           },
         },
       ]
@@ -82,4 +109,5 @@ export class ViewPage implements OnInit {
 
     await alert.present();
   }
+
 }

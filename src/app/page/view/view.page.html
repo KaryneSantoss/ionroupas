@@ -7,29 +7,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" *ngIf="view">
 
-
-  <ion-card *ngIf="docView">
-    <img [alt]="docView.name" [src]="docView.image" style="display: block; margin: auto;" />
+  <ion-card *ngIf="docView.status == 'success'">
+    <ion-img [alt]="docView.name" [src]="docView.image" style="display: block; margin: auto;"></ion-img>
     <ion-card-header>
       <ion-card-title>{{ docView.name }}</ion-card-title>
-      <ion-card-subtitle>{{ docView.date | date: 'dd/MM/yyyy' }} às {{ docView.date | date: 'HH:mm'
-        }}</ion-card-subtitle>
+      <ion-card-subtitle>
+        {{ docView.date | date: 'dd/MM/yyyy' }} às
+        {{ docView.date | date: 'HH:mm' }}
+      </ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
       {{ docView.description }}
       <ul style="padding: 0 0 0 1rem;">
         <li><strong>Local: </strong>{{ docView.location }}</li>
+        <li><strong>GPS: </strong><a href="https://www.google.com/maps/place/{{ docView.geolocation }}" target="_blank">{{ docView.geolocation }}</a></li>
       </ul>
 
       <ion-grid>
         <ion-row>
-          <ion-col>
-            <ion-button color="warning"><ion-icon name="create" slot="start"></ion-icon>Editar</ion-button>
+          <ion-col class="ion-text-center">
+            <ion-button color="warning" [routerLink]="'/edit/' + docView.id"><ion-icon name="create" slot="start"></ion-icon>Editar</ion-button>
           </ion-col>
-          <ion-col>
-            <ion-button color="danger" (click)="delete(docView.id)"><ion-icon name="trash" slot="start"></ion-icon>Apagar</ion-button>
+          <ion-col class="ion-text-center">
+            <ion-button color="danger" (click)="delete(docView.id)"><ion-icon name="trash"
+                slot="start"></ion-icon>Apagar</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -37,11 +40,15 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="!docView">
+  <ion-card *ngIf="docView.status == 'error'">
     <ion-card-header>
       <ion-card-title>Oooops!</ion-card-title>
     </ion-card-header>
-    <ion-card-content>Documento não encontrado.</ion-card-content>
+    <ion-card-content>Não encontramos o documento.</ion-card-content>
   </ion-card>
+
+  <p class="ion-text-center">
+    <ion-button routerLink="/"><ion-icon name="home" slot="start"></ion-icon> Listagem</ion-button>
+  </p>
 
 </ion-content>

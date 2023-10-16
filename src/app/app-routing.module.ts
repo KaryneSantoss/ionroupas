@@ -48,6 +48,7 @@ const routes: Routes = [
   },
   {
     path: 'view/:id',
+    title: environment.appName + '- Ver Documento',
     loadChildren: () => import('./page/view/view.module').then( m => m.ViewPageModule)
   },
   {
@@ -74,7 +75,6 @@ const routes: Routes = [
     redirectTo: 'e404',
     pathMatch: 'full'
   }
-
 
 ];
 
