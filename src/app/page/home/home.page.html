@@ -1,33 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title class="ion-text-center">Início</ion-title>
-    <ion-icon name="home" slot="end" class="ion-padding"></ion-icon>
+    <ion-buttons slot="start"><ion-menu-button></ion-menu-button></ion-buttons>
+    <ion-title class="ion-text-center">{{ env.appName }}</ion-title>
+    <ion-icon ios="home-outline" md="home-sharp" slot="end" class="ion-padding"></ion-icon>
     <ion-progress-bar *ngIf="!view" type="indeterminate"></ion-progress-bar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-list *ngIf="docView.length > 0">
+<ion-content [fullscreen]="true" *ngIf="view">
 
-    <div  *ngFor="let item of docView" >
-    <ion-item [routerLink]="'/view/' + item.id">
-  
-      <ion-thumbnail slot="start">
-        <img [alt]="item.name" [src]="item.image">
-      </ion-thumbnail>
-      <ion-label>{{ item.name }}</ion-label>
-  
-    </ion-item>
-  </div>
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="auto" class="ion-no-padding">
+        <h4 class="ion-margin">Documentos</h4>
+      </ion-col>
+      <ion-col class="ion-text-end">
+        <ion-button routerLink="/new"><ion-icon ios="add-circle-outline" md="add-circle-sharp" slot="start"></ion-icon>Novo</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngIf="count > 0" class="ion-margin-start ion-margin-end">
+    <div *ngFor="let item of docView">
+      <ion-item [routerLink]="'/view/' + item.id">
+        <ion-thumbnail slot="start"><ion-img [alt]="item.name" [src]="item.image"></ion-img></ion-thumbnail>
+        <ion-label>{{ item.name }}</ion-label>
+      </ion-item>
+    </div>
   </ion-list>
 
   <ion-card *ngIf="count == 0">
-    <ion-card-header>
-      <ion-card-title>Oooops!</ion-card-title>
-    </ion-card-header>
+    <ion-card-header><ion-card-title>Oooops!</ion-card-title></ion-card-header>
     <ion-card-content>Não encontramos documentos.</ion-card-content>
   </ion-card>
 

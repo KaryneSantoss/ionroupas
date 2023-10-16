@@ -12,6 +12,12 @@ export const environment = {
   // Coleção principal do Firebase.
   dbCollection: 'things',
 
+  // Imagem padrão dos documentos.
+  dbDefaultImage: 'assets/generic.png',
+
+  // Formatos de imagens permitidos.
+  dbImageFormats: ['gif', 'jpg', 'jpeg', 'png', 'bmp', 'tiff', 'tif'],
+
   firebase: {
     apiKey: "AIzaSyBA-LF80JE6Lx4GL7pIhfpHd8w-W2MYqgA",
     authDomain: "ionroupas.firebaseapp.com",

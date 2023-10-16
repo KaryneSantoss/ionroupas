@@ -48,11 +48,22 @@ const routes: Routes = [
   },
   {
     path: 'view/:id',
+    title: environment.appName + '- Ver Documento',
     loadChildren: () => import('./page/view/view.module').then( m => m.ViewPageModule)
   },
   {
     path: 'create',
     loadChildren: () => import('./db/create/create.module').then( m => m.CreatePageModule)
+  },
+  {
+    path: 'new',
+    title: environment.appName + ' - Novo Documento',
+    loadChildren: () => import('./page/document/document.module').then( m => m.DocumentPageModule)
+  },
+   {
+    path: 'edit/:id',
+    title: environment.appName + ' - Editar Documento',
+    loadChildren: () => import('./page/document/document.module').then( m => m.DocumentPageModule)
   },
   {
     path: 'e404',
@@ -65,6 +76,7 @@ const routes: Routes = [
     redirectTo: 'e404',
     pathMatch: 'full'
   }
+
 ];
 
 @NgModule({

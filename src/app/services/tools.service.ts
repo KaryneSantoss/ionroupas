@@ -15,7 +15,7 @@ export class ToolsService {
   }
 
   // Obtém a data atual no formato ISO (yyyy-MM-dd HH:mm).
-  now() {
+  now(format = 'object') {
     let yourDate = new Date();
     yourDate = new Date(yourDate.getTime() - (yourDate.getTimezoneOffset() * 60 * 1000));
     const dateParts = yourDate.toISOString().split('T');
@@ -27,6 +27,17 @@ export class ToolsService {
   isMail(textMail: string) {
     const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?)*$/;
     return regexEmail.test(textMail);
+  }
+
+  // Gera uma string com 'n' caracteres aleatórios.
+  getRandomChars(n: number): string {
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    let sequence = '';
+    for (let i = 0; i < n; i++) {
+      const rndi = Math.floor(Math.random() * chars.length);
+      sequence += chars.charAt(rndi);
+    }
+    return sequence;
   }
 
 }

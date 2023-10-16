@@ -3,7 +3,22 @@ export const environment = {
   appName: "Ionic Test",
   appSlogan: "O melhor site do mundo!",
 
-  firebase:{
+  //Tipo de login (Redirect e pop up)
+  signInMethod: "redirect",
+
+  // Coleção de contatos do Firestore.
+  contactCollection: 'contacts',
+
+  // Coleção principal do Firebase.
+  dbCollection: 'things',
+
+  // Imagem padrão dos documentos.
+  dbDefaultImage: 'assets/generic.png',
+
+  // Formatos de imagens permitidos.
+  dbImageFormats: ['gif', 'jpg', 'jpeg', 'png', 'bmp', 'tiff', 'tif'],
+
+  firebase: {
     apiKey: "AIzaSyBA-LF80JE6Lx4GL7pIhfpHd8w-W2MYqgA",
     authDomain: "ionroupas.firebaseapp.com",
     projectId: "ionroupas",
